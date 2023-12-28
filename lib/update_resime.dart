@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder_app/resume_data.dart';
 
-class AddResume extends StatefulWidget {
-  const AddResume({
-    super.key,
-  });
+class UpadateResume extends StatefulWidget {
+  const UpadateResume({super.key, required this.resume});
+  final Resume resume;
 
   @override
-  State<AddResume> createState() => _AddResumeState();
+  State<UpadateResume> createState() => _UpadateResumeState();
 }
 
-class _AddResumeState extends State<AddResume> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController skillsController = TextEditingController();
-  TextEditingController experinceController = TextEditingController();
+TextEditingController nameController = TextEditingController();
+TextEditingController skillsController = TextEditingController();
+TextEditingController experinceController = TextEditingController();
 
-  void _clearTextFields() {
-    nameController.clear();
-    skillsController.clear();
-    experinceController.clear();
-  }
-
+class _UpadateResumeState extends State<UpadateResume> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,15 +52,12 @@ class _AddResumeState extends State<AddResume> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    await HiveDataBaseHelp.addResume(Resume(
-                      name: nameController.text,
-                      skills: skillsController.text,
-                      experince: experinceController.text,
-                    ));
-
-                    _clearTextFields();
+                    widget.resume.name = nameController.text;
+                    widget.resume.skills = skillsController.text;
+                    widget.resume.experince = experinceController.text;
+                    await widget.resume.save();
                   },
-                  child: const Text('Add Resume'),
+                  child: const Text(' Resume'),
                 ),
               ],
             ),

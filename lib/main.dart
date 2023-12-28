@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:resume_builder_app/resume_builder.dart';
-import 'package:resume_builder_app/resume_database.dart';
+import 'package:resume_builder_app/resume_data.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -14,7 +14,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
